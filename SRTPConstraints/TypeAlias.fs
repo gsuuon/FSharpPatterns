@@ -1,5 +1,7 @@
 namespace SRTPConstraints.TypeAlias
 
+// Record-based omitted, difference would be same as in ActivePattern
+
 module Constraints = 
     type Quacker< ^a when 'a : (member Quack : unit -> string) > = 'a
 
