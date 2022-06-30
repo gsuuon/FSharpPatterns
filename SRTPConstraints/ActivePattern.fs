@@ -5,12 +5,12 @@
 module ClassBased =
     module Constraints =
         let inline (|IsQuacker|) (x: ^a when 'a : (member Quack : unit -> string)) = x
-        let inline (|Quack|) x = (^a : (member Quack : unit -> string) x)
         let inline (|Barker|)(x: ^a when 'a : (member Bark : unit -> string)) =
             fun () -> (^a : (member Bark : unit -> string) (x))
 
     module Sayers =
         open Constraints
+        let inline (|Quack|) x = (^a : (member Quack : unit -> string) x)
 
         let inline barkButCanAlsoQuack (IsQuacker _ & Barker bark) =
                                         // We can & here!
@@ -35,6 +35,11 @@ module ClassBased =
             // 1. The type 'Foo' does not support the operator 'Bark'
         ignore <| barkButCanAlsoQuack (Bar())
         // ignore <| barkButCanAlsoQuack (Baz())
+            // 1. The type 'Baz' does not support the operator 'Quack'
+
+        let (Quack fooSaying) = Foo()
+        let (Quack barSaying) = Bar()
+        // let (Quack bazSaying) = Baz()
             // 1. The type 'Baz' does not support the operator 'Quack'
 
 
