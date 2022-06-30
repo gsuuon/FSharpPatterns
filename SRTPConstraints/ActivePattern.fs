@@ -1,30 +1,25 @@
 ﻿namespace SRTPConstraints.ActivePattern
-// From comment: https://github.com/fsharp/fslang-suggestions/issues/1089#issuecomment-948704124
+// https://github.com/fsharp/fslang-suggestions/issues/898#issuecomment-684848919
+// https://github.com/fsharp/fslang-suggestions/issues/1089#issuecomment-948704124
 
 module ClassBased =
     module Constraints =
         let inline (|IsQuacker|) (x: ^a when 'a : (member Quack : unit -> string)) = x
-            // When used in an inline function, can bubble up constraint
-            // Still need to use SRTP call syntax (^a : ...)
         let inline (|Quack|) x = (^a : (member Quack : unit -> string) x)
-
         let inline (|Barker|)(x: ^a when 'a : (member Bark : unit -> string)) =
             fun () -> (^a : (member Bark : unit -> string) (x))
 
     module Sayers =
         open Constraints
 
-        let inline barkButCanAlsoQuack x =
-            let (IsQuacker _) = x // x has Quack, need to use SRTP  to call
-            let (Barker bark) = x  // x has Bark
-
+        let inline barkButCanAlsoQuack (IsQuacker _ & Barker bark) =
+                                        // We can & here!
             bark()
 
         let inline quack (IsQuacker x) =
                 // Still need to use SRTP to call Quack
-                // unless this lands:
-                // https://github.com/fsharp/fslang-suggestions/issues/641
-                // though it's closed now :(
+                // until this lands:
+                // https://github.com/fsharp/fslang-suggestions/issues/440
             (^a : (member Quack : unit -> string) x)
 
     module Say =
