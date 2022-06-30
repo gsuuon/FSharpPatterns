@@ -5,5 +5,4 @@ Grab-bag of various F# pattern references
 
 ## Concepts
 
-[SRTP Constraints](./SRTPConstraints)
-SRTP with somewhat ergonomic constraints
+- [SRTP Constraints](./SRTPConstraints) - somewhat ergonomic patterns for SRTP

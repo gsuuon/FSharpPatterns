@@ -12,7 +12,7 @@ Tags: SRTP, constraint, dependency, contract, structural, subtype
 All generic calling functions need to be inlined
 
 ## Advantages
-Avoid nominal subtyping, which can hit type-resolution limitations
+Avoids nominal type-resolution limitations
 
 ## Disadvantages
 Interop with C# will be harder
