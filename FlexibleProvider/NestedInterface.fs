@@ -51,4 +51,5 @@ module Application =
             let y = barThing env
 
             y
-    ()
+    
+    let _ = Logic.main (Provider.Environment())
