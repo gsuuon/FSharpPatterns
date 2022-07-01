@@ -9,6 +9,7 @@
     <Compile Include="ShallowInterface.fs" />
     <Compile Include="NestedInterface.fs" />
     <Compile Include="Reader.fs" />
+    <Compile Include="ActivePattern.fs" />
   </ItemGroup>
 
 </Project>
