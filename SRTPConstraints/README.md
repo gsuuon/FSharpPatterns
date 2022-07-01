@@ -1,18 +1,19 @@
-# SRTP Constraints
+## SRTP Constraints
 Examples of using SRTP with a couple different constraint techniques.
 
 Tags: SRTP, constraint, dependency, contract, structural, subtype
 
-## Why?
+### Why?
  - Structural subtyping
  - Interface alternative (generally only for F# consumers)
  - Dependency management
 
-## Limits
+### Limits
 All generic calling functions need to be inlined
 
-## Advantages
+### Comparison with interfaces
+__Advantages__  
 Avoids nominal type-resolution limitations
 
-## Disadvantages
+__Disadvantages__  
 Interop with C# will be harder
