@@ -1,8 +1,9 @@
-# FSharp Patterns
+## FSharp Patterns
 
 Grab-bag of various F# pattern references
 
 
-## Concepts
+### Concepts
 
-- [SRTP Constraints](./SRTPConstraints) - somewhat ergonomic patterns for SRTP
+- [SRTP Constraints](./SRTPConstraints) - Somewhat ergonomic patterns for SRTP. Structural subtyping.
+- [Flexible Provider](./FlexibleProvider/) - Flexible types with interface providers. Dependency management.
