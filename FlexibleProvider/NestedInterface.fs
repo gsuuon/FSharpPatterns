@@ -5,8 +5,6 @@ Nesting interfaces prevents a noisy list of method names on the top-level enviro
 It also allows us to use object expressions to implement the interfaces.
 
 Limitation: we can't use the same member name for the inner interface with `member val` due to backing field
-
-Note: generic interfaces can be implemented per specialization
 *)
 
 module Interfaces =
@@ -53,3 +51,4 @@ module Application =
             y
     
     let _ = Logic.main (Provider.Environment())
+
