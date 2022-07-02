@@ -10,7 +10,7 @@ module Interfaces =
     type ILog =
         abstract member Log : string -> unit
 
-module Pattern =
+module Patterns =
     open Interfaces
 
     type Reader<'env, 'a> = Reader of ('env -> 'a)
@@ -21,7 +21,7 @@ module Pattern =
         x
 
 module Application =    
-    open Pattern
+    open Patterns
     open FlexibleProvider.ShallowInterface
     open FlexibleProvider.ShallowInterface.Interfaces
 
@@ -47,13 +47,14 @@ module Application =
     let _ = main (LoggingProviderB())
 
 module CompositionComparison =
-    open Pattern
+    open Patterns
     open Application
+    open Interfaces
 
     let run env (Reader f) = f env
-    let log env (Reader f) =
+    let log (env: #ILog) (Reader f) =
         let x = f env
-        printfn "%A" x
+        env.Log (x.ToString())
         x
 
     let main env =
@@ -63,10 +64,15 @@ module CompositionComparison =
         ()
 
 module RunWhenPassed =
-    open Pattern
+    open Patterns
     open Application
 
     let main env =
         let runAndAdd1 (Result env x) = x + 1
-        let bazX = runAndAdd1 barThing
+        let barXPlus1 = runAndAdd1 barThing
+
+        // Comparison without active pattern
+        let runAndAdd1' (Reader f) = (f env) + 1
+        let barXPlus1' = runAndAdd1' barThing
+
         ()
