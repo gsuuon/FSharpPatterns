@@ -19,7 +19,8 @@ type Bar() =
         member _.thing (x: string) = 1
 
 (*
-    But we can't consume different specializations from the same implementing type. This is currently by design. The reason given is that this makes type inference for 'a :> seq<'a> <-> 'b :> seq<'b> work in a more expected way.
+    But we can't consume different specializations from the same implementing type. This is currently by design.
+    The reason given is that this makes type inference for 'a :> seq<'a> <-> 'b :> seq<'b> work in a more expected way.
 *)
 let main env =
     let a = fooInt env
@@ -28,7 +29,10 @@ let main env =
     ()
 
 (*
-    The workaround is to duplicate the interfaces / specialize them yourself. This also removes any relation between the two specializations that you got with a generic - any code which worked with the (unspecialized) generic interface will also need to be duplicated. A potential workaround for that is to nest the interfaces to be able to talk about them as a group.
+    The workaround is to duplicate the interfaces / specialize them yourself.
+    This also removes any relation between the two specializations that you got with a generic - any code which worked with the
+    (unspecialized) generic interface will also need to be duplicated. A potential workaround for that is to nest the interfaces to
+    be able to talk about them as a group.
 *)
 type FooString = abstract thing: string -> int
 type FooInt = abstract thing: int -> int
