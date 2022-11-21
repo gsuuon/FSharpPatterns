@@ -1,0 +1,6 @@
+- new state-machine machinery implemented for F# 6.0 tasks
+- record of functions vs interface
+    - record of functions ok if 'closed'
+    - interface more composable
+        - single object can implement many interfaces
+        - if type annotations were required in consumers, record of functions changes will require more annotation changes
